@@ -89,7 +89,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TASKKK2
+namespace okt_12
 {
     internal class Program
     {
@@ -110,68 +110,68 @@ namespace TASKKK2
             Console.WriteLine($"Yas: {student.Age}");
             Console.WriteLine($"Qiymet: {student.Grade}");
         }
-   
-    }
 
-    class Student
-    {
-        private string name;
-        private int age;
-        private int grade;
-
-        public string Name
+        class Student
         {
-            get { return name; }
-            set
+            private string _name;
+            private int _age;
+            private int _grade;
+
+            public string Name
             {
-                if (string.IsNullOrWhiteSpace(value) || !char.IsUpper(value[0]) || value.Any(char.IsDigit))
+                get { return _name; }
+                set
                 {
-                    Console.WriteLine("Ad böyük hərflə baslamalıdır, kənarlarında bosluq olmamalıdır, içində rəqəm olmamalıdır.");
-                    Console.Write("Telebe adını tekrar daxil ed: ");
-                    Name = Console.ReadLine();
-                }
-                else
-                {
-                    name = value;
+                    if (string.IsNullOrWhiteSpace(value) || !char.IsUpper(value[0]) || value.Any(char.IsDigit))
+                    {
+                        Console.WriteLine("Ad böyük herfle baslamalıdır, kenarlarında bosluq olmamalıdır, içinde reqem olmamalidır.");
+                        Console.Write("Telebe adını tekrar daxil ed: ");
+                        Name = Console.ReadLine();
+                    }
+                    else
+                    {
+                        _name = value;
+                    }
                 }
             }
-        }
 
-        public int Age
-        {
-            get { return age; }
-            set
+            public int Age
             {
-                if (value <= 0 || value > 200)
+                get { return _age; }
+                set
                 {
-                    Console.WriteLine("Yas 0 və ya mənfi ola bilməz, ve yas limitini asmayin");
-                    Console.Write("Yası yenidən daxil ed: ");
-                    Age = int.Parse(Console.ReadLine());
-                }
-                else
-                {
-                    age = value;
+                    if (value <= 0 || value > 200)
+                    {
+                        Console.WriteLine("Yas 0 və ya menfi ola bilmez, ve yas limitini asmayin");
+                        Console.Write("Yası yeniden daxil ed: ");
+                        Age = int.Parse(Console.ReadLine());
+                    }
+                    else
+                    {
+                        _age = value;
+                    }
                 }
             }
-        }
 
-        public int Grade
-        {
-            get { return grade; }
-            set
+            public int Grade
             {
-                if (value < 0 || value > 100)
+                get { return _grade; }
+                set
                 {
-                    Console.WriteLine("Qiymət 0 və 100 arasında olmalıdır. Düzgün qiymət daxil ed.");
-                    Console.Write("Qiyməti yenidən daxil ed: ");
-                    Grade = int.Parse(Console.ReadLine());
-                }
-                else
-                {
-                    grade = value;
+                    if (value < 0 || value > 100)
+                    {
+                        Console.WriteLine("Qiymet 0 ve 100 arasında olmalıdır. Düzgün qiymet daxil ed.");
+                        Console.Write("Qiymeti yeniden daxil ed: ");
+                        Grade = int.Parse(Console.ReadLine());
+                    }
+                    else
+                    {
+                        _grade = value;
+                    }
                 }
             }
         }
     }
 
 }
+
