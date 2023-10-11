@@ -1,0 +1,177 @@
+
+1)
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TASKKK2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee employee1 = new Employee("Aqil", true, 100);
+            Assistant assistant1 = new Assistant("Baaxsiyev", true, 200);
+            Manager manager1 = new Manager("Pasa", false, 300);
+
+            Console.WriteLine("Employee 1 Promotion Salary: " + employee1.GetPromotion());
+            assistant1.GetFeedback();
+            Console.WriteLine("Manager 1 Promotion Salary: " + manager1.GetPromotion());
+        }
+
+    }
+
+    public class Employee
+    {
+
+
+        public string Name { get; set; }
+        public bool IsSuccessful { get; set; }
+        protected int Salary { get; set; }
+
+        public Employee(string name, bool isSuccessful, int salary)
+        {
+            Name = name;
+            IsSuccessful = isSuccessful;
+            Salary = salary;
+        }
+
+        public int GetPromotion()
+        {
+            return Salary + 100;
+        }
+    }
+
+    public class Assistant : Employee
+    {
+        public Assistant(string name, bool isSuccessful, int salary) : base(name, isSuccessful, salary)
+        {
+        }
+
+        public void GetFeedback()
+        {
+            if (IsSuccessful)
+            {
+                int newSalary = GetPromotion();
+                System.Console.WriteLine($"{Name} bir promosyon aldı. New salary: {newSalary}");
+            }
+            else
+            {
+                Console.WriteLine($"{Name} kriteriyalara cavab vermədi.");
+            }
+        }
+    }
+
+    public class Manager : Employee
+    {
+        public Manager(string name, bool isSuccessful, int salary) : base(name, isSuccessful, salary)
+        {
+        }
+
+        public int GetPromotion()
+        {
+            return base.GetPromotion();
+        }
+    }
+}
+
+
+
+
+//********************************************************************************************************************************************************
+2)
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TASKKK2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Student student = new Student();
+
+            Console.Write("Telebe adını daxil ed: ");
+            student.Name = Console.ReadLine();
+
+            Console.Write("Yası daxil ed: ");
+            student.Age = int.Parse(Console.ReadLine());
+
+            Console.Write("Qiymeti daxil ed: ");
+            student.Grade = int.Parse(Console.ReadLine());
+
+            Console.WriteLine($"Telebe adı: {student.Name}");
+            Console.WriteLine($"Yas: {student.Age}");
+            Console.WriteLine($"Qiymet: {student.Grade}");
+        }
+   
+    }
+
+    class Student
+    {
+        private string name;
+        private int age;
+        private int grade;
+
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value) || !char.IsUpper(value[0]) || value.Any(char.IsDigit))
+                {
+                    Console.WriteLine("Ad böyük hərflə baslamalıdır, kənarlarında bosluq olmamalıdır, içində rəqəm olmamalıdır.");
+                    Console.Write("Telebe adını tekrar daxil ed: ");
+                    Name = Console.ReadLine();
+                }
+                else
+                {
+                    name = value;
+                }
+            }
+        }
+
+        public int Age
+        {
+            get { return age; }
+            set
+            {
+                if (value <= 0 || value > 200)
+                {
+                    Console.WriteLine("Yas 0 və ya mənfi ola bilməz, ve yas limitini asmayin");
+                    Console.Write("Yası yenidən daxil ed: ");
+                    Age = int.Parse(Console.ReadLine());
+                }
+                else
+                {
+                    age = value;
+                }
+            }
+        }
+
+        public int Grade
+        {
+            get { return grade; }
+            set
+            {
+                if (value < 0 || value > 100)
+                {
+                    Console.WriteLine("Qiymət 0 və 100 arasında olmalıdır. Düzgün qiymət daxil ed.");
+                    Console.Write("Qiyməti yenidən daxil ed: ");
+                    Grade = int.Parse(Console.ReadLine());
+                }
+                else
+                {
+                    grade = value;
+                }
+            }
+        }
+    }
+
+}
